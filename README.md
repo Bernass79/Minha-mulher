@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Marcela ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(-45deg, #ff6b9d, #c44569, #f8b500, #ff6348);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .heart {
+            position: fixed;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .main-title {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin: 2rem 0;
+            animation: pulse 2s ease-in-out infinite;
+            background: linear-gradient(45deg, #fff, #ffb3ba);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.5s; }
+        .section:nth-child(3) { animation-delay: 1s; }
+        .section:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .romantic-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #2c3e50;
+            margin: 1.5rem 0;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .question-section {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            border: 3px solid #ff69b4;
+        }
+
+        .big-question {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            font-weight: bold;
+            margin: 2rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.5rem 3rem;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        .btn-no {
+            background: linear-gradient(45deg, #6c757d, #adb5bd);
+            color: white;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-no:hover {
+            transform: scale(0.9);
+            opacity: 0.7;
+        }
+
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .celebration-content {
+            background: white;
+            padding: 4rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            animation: celebrationPop 0.8s ease;
+        }
+
+        @keyframes celebrationPop {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        .celebration h2 {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 2rem;
+        }
+
+        .celebration p {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .reason-card {
+            height: 180px;
+            position: relative;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .reason-front, .reason-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.8s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .reason-front {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            transform: rotateY(0deg);
+        }
+
+        .reason-back {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            transform: rotateY(180deg);
+        }
+
+        .reason-card.flipped .reason-front {
+            transform: rotateY(180deg);
+        }
+
+        .reason-card.flipped .reason-back {
+            transform: rotateY(0deg);
+        }
+
+        .reason-front p {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .reason-back p {
+            font-size: 1rem;
+            color: #2c3e50;
+            line-height: 1.4;
+        }
+
+        .reason-back strong {
+            font-size: 1.2rem;
+            color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            .main-title { 
+                font-size: 2.8rem; 
+                margin: 1rem 0;
+                padding: 0 1rem;
+            }
+            .section { 
+                padding: 1.5rem; 
+                margin: 1rem 0.5rem; 
+            }
+            .romantic-text { 
+                font-size: 1.1rem; 
+                text-align: left;
+            }
+            .big-question { 
+                font-size: 1.8rem; 
+                margin: 1.5rem 0;
+            }
+            .btn { 
+                padding: 1.2rem 2.5rem; 
+                font-size: 1.3rem; 
+                margin: 0.5rem;
+                min-width: 140px;
+            }
+            .buttons-container { 
+                gap: 1rem; 
+                flex-direction: column;
+                align-items: center;
+            }
+            .reasons-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+            .reason-card {
+                height: 160px;
+            }
+            .celebration-content {
+                padding: 2rem;
+                margin: 1rem;
+                max-width: 90vw;
+            }
+            .celebration h2 {
+                font-size: 2.2rem;
+            }
+            .celebration p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title { 
+                font-size: 2.2rem; 
+            }
+            .section {
+                padding: 1rem;
+            }
+            .romantic-text {
+                font-size: 1rem;
+            }
+            .big-question {
+                font-size: 1.5rem;
+            }
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+            .reasons-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .reason-card {
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">Marcela ❤️</h1>
+        
+        <div class="section">
+            <p class="romantic-text">
+                Desde o momento em que você entrou na minha vida, tudo mudou. 
+                Seus olhos iluminam meus dias mais sombrios, e seu sorriso é capaz de 
+                transformar qualquer momento comum em algo <span class="highlight">extraordinário</span>.
+            </p>
+            <p class="romantic-text">
+                Cada conversa nossa, cada risada compartilhada, cada momento juntos... 
+                tudo isso construiu algo <span class="highlight">especial</span> no meu coração que 
+                eu nunca pensei que seria possível sentir.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2 style="color: #e74c3c; font-size: 2rem; margin-bottom: 1.5rem;">O que você significa para mim</h2>
+            <div class="reasons-grid">
+                <div class="reason-card" onclick="revealReason(this)">
+                    <div class="reason-front">
+                        <span style="font-size: 3rem;">💝</span>
+                        <p>Clique aqui</p>
+                    </div>
+                    <div class="reason-back">
+                        <p><strong>Você é especial</strong><br>Sua presença ilumina todos os meus dias</p>
+                    </div>
+                </div>
+                <div class="reason-card" onclick="revealReason(this)">
+                    <div class="reason-front">
+                        <span style="font-size: 3rem;">🌟</span>
+                        <p>E aqui também</p>
+                    </div>
+                    <div class="reason-back">
+                        <p><strong>Você me inspira</strong><br>Com você eu quero ser uma pessoa melhor</p>
+                    </div>
+                </div>
+                <div class="reason-card" onclick="revealReason(this)">
+                    <div class="reason-front">
+                        <span style="font-size: 3rem;">💖</span>
+                        <p>Mais uma surpresa</p>
+                    </div>
+                    <div class="reason-back">
+                        <p><strong>Você é única</strong><br>Não existe ninguém como você no mundo</p>
+                    </div>
+                </div>
+                <div class="reason-card" onclick="revealReason(this)">
+                    <div class="reason-front">
+                        <span style="font-size: 3rem;">🌹</span>
+                        <p>E por último...</p>
+                    </div>
+                    <div class="reason-back">
+                        <p><strong>Eu te amo</strong><br>Cada dia mais e mais intensamente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <p class="romantic-text">
+                Você é mais do que eu poderia ter sonhado. É minha <span class="highlight">inspiração</span>, 
+                minha <span class="highlight">alegria</span>, e a pessoa que faz meu coração bater mais forte.
+            </p>
+            <p class="romantic-text">
+                Por isso, hoje eu quero te fazer uma pergunta muito importante, 
+                uma pergunta que está no meu coração há muito tempo...
+            </p>
+        </div>
+
+        <div class="section question-section">
+            <h2 class="big-question">
+                Marcela, você quer namorar comigo? 💕
+            </h2>
+            
+            <div class="buttons-container">
+                <button class="btn btn-yes" onclick="showCelebration()">
+                    SIM! ❤️
+                </button>
+                <button class="btn btn-no" onclick="moveButton(this)">
+                    Não 😔
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration">
+        <div class="celebration-content">
+            <h2>🎉 SIM! 🎉</h2>
+            <p>
+                Você acabou de me fazer a pessoa mais feliz do mundo! ❤️<br><br>
+                Mal posso esperar para começar essa jornada incrível ao seu lado, 
+                Marcela. Você é simplesmente perfeita!
+            </p>
+            <p style="margin-top: 2rem; font-size: 1.2rem; color: #e74c3c;">
+                Te amo muito! 💕✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Criar corações flutuantes
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Criar corações a cada 1.5 segundos
+        setInterval(createHearts, 1500);
+
+        // Função para mostrar celebração
+        function showCelebration() {
+            document.getElementById('celebration').style.display = 'flex';
+            
+            // Criar explosão de corações
+            for(let i = 0; i < 20; i++) {
+                setTimeout(createHearts, i * 100);
+            }
+            
+            // Adicionar confetes
+            createConfetti();
+        }
+
+        // Função para mover o botão "Não"
+        function moveButton(button) {
+            const container = button.parentElement;
+            const containerRect = container.getBoundingClientRect();
+            
+            const maxX = containerRect.width - button.offsetWidth;
+            const maxY = containerRect.height - button.offsetHeight;
+            
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            
+            button.style.position = 'absolute';
+            button.style.left = newX + 'px';
+            button.style.top = newY + 'px';
+            button.style.transform = 'scale(0.8)';
+            
+            // Alterar o texto do botão para algo mais persuasivo
+            const texts = [
+                'Tem certeza? 🥺',
+                'Pensa melhor... 💕',
+                'Só um SIM! 😍',
+                'Por favor? 🙏',
+                'Vai... 😘'
+            ];
+            
+            button.innerHTML = texts[Math.floor(Math.random() * texts.length)];
+        }
+
+        // Função para criar confetes
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#c44569', '#f8b500', '#ff6348', '#4834d4'];
+            
+            for(let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                confetti.style.animation = 'float 3s ease-out forwards';
+                confetti.style.zIndex = '999';
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        // Função para revelar as razões nos cards
+        function revealReason(card) {
+            card.classList.add('flipped');
+            
+            // Criar mini corações ao clicar
+            for(let i = 0; i < 5; i++) {
+                const miniHeart = document.createElement('div');
+                miniHeart.innerHTML = '💕';
+                miniHeart.style.position = 'absolute';
+                miniHeart.style.left = Math.random() * 100 + '%';
+                miniHeart.style.top = Math.random() * 100 + '%';
+                miniHeart.style.fontSize = '20px';
+                miniHeart.style.animation = 'float 2s ease-out forwards';
+                miniHeart.style.pointerEvents = 'none';
+                miniHeart.style.zIndex = '999';
+                
+                card.appendChild(miniHeart);
+                
+                setTimeout(() => {
+                    miniHeart.remove();
+                }, 2000);
+            }
+        }
+
+        // Adicionar efeito de hover nas fotos
+        document.querySelectorAll('.reason-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('flipped')) {
+                    this.style.transform = 'scale(1.02) translateY(-5px)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Efeito de digitação no título
+        const title = document.querySelector('.main-title');
+        const originalText = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        const typingEffect = setInterval(() => {
+            if (i < originalText.length) {
+                title.textContent += originalText.charAt(i);
+                i++;
+            } else {
+                clearInterval(typingEffect);
+            }
+        }, 200);
+    </script>
+</body>
+</html>
